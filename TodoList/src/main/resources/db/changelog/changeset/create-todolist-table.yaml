@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_table_todolist
+      author: Savelyev_Denis
+      changes:
+        - createTable:
+            tableName: todolist
+            columns:
+              - column:
+                  name: id
+                  type: INTEGER
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: todolist_pkey
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false

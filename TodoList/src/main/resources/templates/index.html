@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список дел</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/styles.css}"/>
+</head>
+<body>
+    <h1>Добро пожаловать</h1>
+    <div th:switch="${lists}">
+        <h2 th:case="null">Дел нет</h2>
+        <div th:case="*">
+            <h2>ToDoList</h2>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each ="todolist : ${lists}">
+                    <td th:text="${todolist.id}"></td>
+                    <td th:text="${todolist.name}"></td>
+                    <td><a th:href="@{todolist-update/{id}(id=${todolist.id})}">Изменить</a></td>
+                    <td><a th:href="@{todolist-delete/{id}(id=${todolist.id})}">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/todolist-create">Создать дело</a></p>
+    </div>
+</body>
+</html>

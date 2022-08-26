@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Создаём Дело</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/styles.css}"/>
+</head>
+<body>
+    <form action="#" th:action="@{/todolist-create}" th:object="${list}" method="post">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <input type="submit" value="Создать дело">
+    </form>
+</body>
+</html>

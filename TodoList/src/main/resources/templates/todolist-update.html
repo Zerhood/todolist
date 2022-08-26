@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Обновляем дело</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/styles.css}"/>
+</head>
+<body>
+<form action="#" th:action="@{/todolist-update}" th:object="${list}" method="post">
+    <label for="id">ID</label>
+    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+    <br/>
+    <label for="name">name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <br/>
+    <input type="submit" value="Обновить дело">
+</form>
+</body>
+</html>
