@@ -8,3 +8,5 @@
 4. Liquibase
 5. Lombok
 6. Thymeleaf
+7. JUnit 5
+8. Mockito
