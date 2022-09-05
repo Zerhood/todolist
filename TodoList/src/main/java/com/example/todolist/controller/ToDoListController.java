@@ -4,10 +4,7 @@ import com.example.todolist.entity.ToDoList;
 import com.example.todolist.service.ToDoListServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,7 +40,7 @@ public class ToDoListController {
     public String updateList(@PathVariable int id, Model model) {
         ToDoList toDoList = service.findById(id);
         model.addAttribute("list", toDoList);
-        return "todolist-update";
+        return "/todolist-update";
     }
 
     @PostMapping("/todolist-update")

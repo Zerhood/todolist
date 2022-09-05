@@ -1,5 +1,7 @@
 package com.example.todolist;
 
+import com.example.todolist.config.ControllerTestConfig;
+import com.example.todolist.controller.ToDoListController;
 import com.example.todolist.entity.ToDoList;
 import com.example.todolist.service.ToDoListServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,8 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,9 +26,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = ControllerTestConfig.class)
 @WebAppConfiguration
-@AutoConfigureMockMvc
-@SpringBootTest
 @DisplayName("тестируем контроллер")
 public class ControllerTest {
     @Autowired
@@ -37,6 +37,7 @@ public class ControllerTest {
     private ToDoListServiceImpl service;
 
     @Autowired
+    private ToDoListController controller;
     private MockMvc mvc;
 
     @BeforeEach
@@ -92,7 +93,7 @@ public class ControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("list", toDoList))
-                .andExpect(view().name("todolist-update"));
+                .andExpect(view().name("/todolist-update"));
     }
 
     @Test
@@ -109,7 +110,7 @@ public class ControllerTest {
     @Test
     @DisplayName("тестируем переход на страницу создания задачи")
     public void testCreateListForm() throws Exception {
-        mvc.perform(get("/todolist-create"))
+        mvc.perform(get("/todolist-create/"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(view().name("todolist-create"));

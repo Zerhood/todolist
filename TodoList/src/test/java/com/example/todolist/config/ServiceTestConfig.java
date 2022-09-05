@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import static org.mockito.Mockito.mock;
 
 @Configuration
-public class TestConfig {
+public class ServiceTestConfig {
 
     @Bean
     public ToDoListServiceImpl service() {
-        return mock(ToDoListServiceImpl.class);
+        return new ToDoListServiceImpl(repository());
     }
 
     @Bean
